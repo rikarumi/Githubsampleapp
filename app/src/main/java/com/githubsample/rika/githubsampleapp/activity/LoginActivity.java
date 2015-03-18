@@ -82,8 +82,7 @@ public class LoginActivity extends Activity {
         editor.putString(myPref_username,usrname);
         editor.putString(myPref_password, password);
         editor.commit();
-
+        Log.d("usrname", sharedPreferences.getString(myPref_username,""));
         startActivity(new Intent(this, MainActivity.class));
-        finish();
     }
 }

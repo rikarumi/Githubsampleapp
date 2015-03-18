@@ -7,14 +7,14 @@ import android.graphics.Bitmap;
  */
 public class NewsFeed {
 
-    private Bitmap user_avatar;
+   // private Bitmap user_avatar;
     private String feed_content;
 
-    public NewsFeed (Bitmap user_avatar, String feed_content){
-        this.user_avatar = user_avatar;
+    public NewsFeed ( String feed_content){
+    //    this.user_avatar = user_avatar;
         this.feed_content = feed_content;
     }
-
+/*
     public Bitmap getUser_avatar() {
         return user_avatar;
     }
@@ -22,7 +22,7 @@ public class NewsFeed {
     public void setUser_avatar(Bitmap user_avatar) {
         this.user_avatar = user_avatar;
     }
-
+*/
     public String getFeed_content() {
         return feed_content;
     }

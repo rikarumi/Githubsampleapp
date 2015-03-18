@@ -1,6 +1,7 @@
 package com.githubsample.rika.githubsampleapp.adapters;
 
 import android.content.SharedPreferences;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,11 @@ import android.widget.TextView;
 
 import com.githubsample.rika.githubsampleapp.R;
 import com.githubsample.rika.githubsampleapp.model.NewsFeed;
+import com.rejasupotaro.octodroid.GitHub;
 import com.rejasupotaro.octodroid.models.User;
+import com.squareup.okhttp.Response;
+
+import rx.android.view.ViewObservable;
 
 
 public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.ViewHolder>{
@@ -23,8 +28,14 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.ViewHo
     SharedPreferences.Editor editor;
     User user;
 
-    public HomeFeedAdapter(NewsFeed[] newsFeed){
-        this.newsFeed = newsFeed;
+    public HomeFeedAdapter(RecyclerView recyclerView) {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(recyclerView.getContext());
+        recyclerView.setHasFixedSize(false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        ViewObservable.bindView(recyclerView, GitHub.client().hottestRepositories()).subscribe(s ->{
+
+        });
     }
 
 
@@ -38,7 +49,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.useravatar.setImageBitmap(newsFeed[position].getUser_avatar());
+        //holder.useravatar.setImageBitmap(newsFeed[position].getUser_avatar());
         holder.feedcontent.setText(newsFeed[position].getFeed_content());
     }
 
@@ -53,8 +64,8 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<HomeFeedAdapter.ViewHo
 
         public ViewHolder(View feedContentView){
             super(feedContentView);
-            feedcontent = (TextView)feedContentView.findViewById(R.id.feed_content);
-            useravatar = (ImageView) feedContentView.findViewById(R.id.user_avatar);
+           // feedcontent = (TextView)feedContentView.findViewById(R.id.feed_content);
+           // useravatar = (ImageView) feedContentView.findViewById(R.id.user_avatar);
         }
     }
 }
